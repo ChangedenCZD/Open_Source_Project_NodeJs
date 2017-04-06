@@ -1,0 +1,50 @@
+@import "style.css";
+@import "libs/listUI.css";
+@import "index.css";
+
+.app-list-area, .account-input-area {
+    width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.account-input-area .flex-r {
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+input {
+    height: 25px;
+    margin: 5px;
+    padding: 2px 5px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+button {
+    padding: 10px;
+    margin: 10px 5px 0;
+    border-radius: 5px;
+}
+
+textarea {
+    margin: 5px;
+}
+
+.account-input-area
+.mode-change-area {
+    margin: 20px 0 10px;
+}
+
+.app-list-not-null {
+    width: 90%;
+    background: none;
+}
+
+.iconfont {
+    cursor: pointer;
+}

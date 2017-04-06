@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel='stylesheet' href='/stylesheets/app_manager.css'/>
+</head>
+<body>
+<div class="wrap flex-c fs-small">
+    <a class="float-l fs-nano" href="../../version_manager"><< 返回应用列表</a>
+    <span class="title fs-title fw-bolder"><%= title %></span>
+    <div id="wrap">
+        <div class="area-red app-detail-area">
+            <div class="info-area fs-small">
+                <div class="line flex-r f-ai-c">
+                    <div class="flex-r">
+                        <span class="title">应用名</span>
+                        <span class="flex1">{{appInfo.appName}}</span>
+                    </div>
+                    <div class="modify-area flex1 fs-small flex-r">
+                        <i class="iconfont mgr-10" @click="deleteApp">&#xe69d;</i>
+                        <i class="iconfont mgl-10 mgr-10" @click="editAppInfo">&#xe69e;</i>
+                        <i class="iconfont mgl-10 mgr-10" @click="toUpload">&#xe6b9;</i>
+                    </div>
+                </div>
+                <div class="line flex-r f-ai-c">
+                    <div class="flex-r">
+                        <span class="title">应用包名</span>
+                        <span class="flex1">{{appInfo.appPackage}}</span>
+                    </div>
+                </div>
+                <div class="line flex-r f-ai-c">
+                    <span class="title">应用描述</span>
+                    <span class="flex1 word">{{appInfo.appDescr}}</span>
+                </div>
+                <div class="line flex-r f-ai-c">
+                    <span class="title">获取新版</span>
+                    <span class="flex1 c_p" @click="getLast">点击查看</span>
+                </div>
+            </div>
+            <div id="version-list" class="list">
+                <ol v-if="versionList.length>0">
+                    <li class="flex-c t-black" v-for="(item,idx) in versionList" :key="item.id">
+                        <div class="flex-r mark fw-bold w100">
+                            <span class="fs-title">{{item.apk_version}}</span>
+                            <span class="fs-small build flex1">(Build {{item.apk_build}})</span>
+                            <i class="iconfont mgr-10 fw-normal" @click="deleteApk" :data-idx="idx">&#xe69d;</i>
+                        </div>
+                        <span class="fs-nano small">
+                            {{new Date(item.create_at).Format('yyyy-MM-dd HH:mm:ss')}}
+                        </span>
+                        <span class="fs-min small pd-10 descr">
+                            <i class="mgr-10 message">{{item.apk_new_message}}</i>
+                            <i class="iconfont mgr-10" @click="editUpdateMessage" :data-idx="idx">&#xe69e;</i>
+                            <i class="iconfont mgl-10" @click="downloadApk" :data-idx="idx">&#xe714;</i>
+                        </span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <div class="file-upload-area" v-if="isShowUpload">
+            <div class="upload-area area-gray bg-white b-r-5 flex-c">
+                <p class="flex-r f-ai-c">
+                    <input type="file" name="file" id="apk-file" v-on:change="apkFileChange" accept=".apk"/>
+                    <label class="flex1 flex-r fs-min" for="apk-file">
+                        <span class="flex1">{{apkFile&&apkFile.name}}</span>
+                        <span class="t-white bg-red">选择文件</span>
+                    </label>
+                </p>
+                <p class="flex-c descr-area fs-middle">
+                    <textarea class="apk-descr pd-10" rows="10" placeholder="更新日志" v-model="updateMessage"></textarea>
+                </p>
+                <div class="flex-r pdt-10">
+                    <i class="iconfont flex1" @click="hideUploadArea">&#xe69a;</i>
+                    <i class="iconfont flex1" @click="uploadApkFile">&#xe6ad;</i>
+                </div>
+            </div>
+        </div>
+        <div class="apk-update-message-modify-area" v-if="isShowMessageModify">
+            <div class="message-area area-gray bg-white b-r-5 flex-c">
+                <textarea class="pd-10" rows="10" placeholder="更新日志" v-model="updateMessage"></textarea>
+                <div class="flex-r pdt-10">
+                    <i class="iconfont flex1" @click="hideMsgModifyArea">&#xe69a;</i>
+                    <i class="iconfont flex1" @click="modifyMessage">&#xe6ad;</i>
+                </div>
+            </div>
+        </div>
+        <div class="apk-update-message-modify-area" v-if="isShowEditAppInfo">
+            <div class="message-area area-gray bg-white b-r-5 flex-c">
+                <h3 class="mgb-10 fw-bold">修改应用信息</h3>
+                <input class="fs-min" type="text" v-model="appName" placeholder="请输入应用名字"/>
+                <input class="fs-min" type="text" v-model="appPackageName" placeholder="请输入应用包名"/>
+                <textarea class="flex1 pd-10 b-r-5 fs-min mgt-10" v-model="appDescr" rows="5"
+                          maxlength="200" placeholder="请输入应用简介（选填）"></textarea>
+                <p class="flex-r pdt-10">
+                    <i class="iconfont flex1" @click="hideEditAppInfo">&#xe69a;</i>
+                    <i class="iconfont flex1" @click="updateAppInfo">&#xe6ad;</i>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/javascripts/libs/require.js"></script>
+<script src="/javascripts/app_manager.js"></script>
+<script src="/javascripts/libs/footer.js"></script>
+</html>

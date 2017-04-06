@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/open_source.css'/>
+</head>
+<body>
+<div id="wrap" class="wrap flex-c fs-small">
+    <span class="title fs-title fw-bolder"><%= title %></span>
+    <ul v-if="fileList&&fileList.length>0">
+        <li class="item fs-nano" v-for="(item,idx) in fileList">
+            <a class="flex-r" @click="openOrDownload" href="javascript:;" :data-idx="idx">
+                <span class="name flex1" :data-idx="idx">{{item.name}}</span>
+                <span :data-idx="idx">文件{{item.isDir?'夹':''}}</span></a>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="/javascripts/libs/require.js"></script>
+<script src="/javascripts/open_source.js"></script>
+<script src="/javascripts/libs/footer.js"></script>
+</html>

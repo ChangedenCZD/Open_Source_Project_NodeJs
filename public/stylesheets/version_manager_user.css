@@ -1,0 +1,36 @@
+@import "style.css";
+@import "libs/listUI.css";
+@import "index.css";
+
+.iconfont {
+    cursor: pointer;
+}
+
+.info-area .title {
+    width: 100px;
+    font-weight: bold;
+}
+
+.info-area span {
+    text-align: left;
+}
+
+.info-area .line {
+    height: 50px;
+}
+
+.info-update-area {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+}
+.info-update-area .update-area{
+    margin: 20px auto;
+    width: 400px;
+}
+.info-update-area .update-area input{
+    border: none;
+    border-bottom: 1px solid #ccc;
+}

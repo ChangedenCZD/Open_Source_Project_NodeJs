@@ -1,0 +1,123 @@
+@import "style.css";
+@import "libs/listUI.css";
+@import "index.css";
+
+.app-detail-area {
+    width: 80%;
+    margin: 10px auto;
+    background-color: white;
+}
+
+.info-area .title {
+    width: 100px;
+    font-weight: bold;
+}
+
+.info-area span {
+    text-align: left;
+}
+
+.list .mark span {
+    padding: 0;
+    align-items: flex-end;
+    display: flex;
+}
+
+.list .mark .build {
+    padding-bottom: 1px;
+}
+
+.list .descr {
+    padding-top: 0;
+}
+
+.list ol li {
+    align-items: flex-start;
+    background-color: transparent;
+    padding: 20px;
+}
+
+.list {
+    box-shadow: none;
+}
+
+.info-area .line {
+    height: 50px;
+}
+
+.modify-area, .upload-area {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.info-area button, .upload-btn-area input {
+    width: 80px;
+    color: white;
+    height: 35px;
+    margin: 13px 20px 0 0;
+}
+
+.file-upload-area,.apk-update-message-modify-area {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.file-upload-area .upload-area ,.apk-update-message-modify-area .message-area{
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.file-upload-area p {
+    border: 2px solid #F04258;
+}
+
+.file-upload-area input {
+    opacity: 0;
+    width: 0.1px;
+    height: 0.1px;
+}
+
+.file-upload-area label .flex1 {
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+    border-right: 2px solid #F04258;
+}
+
+.file-upload-area textarea {
+    border-color: transparent;
+    resize: none;
+}
+
+.file-upload-area label {
+    height: 35px;
+}
+
+.file-upload-area .descr-area {
+    border-top: none;
+}
+
+#loading-layout {
+    z-index: 999;
+}
+i.message{
+    text-align: left;
+}
+.iconfont{
+    cursor: pointer;
+}
+.apk-update-message-modify-area input{
+    height: 25px;
+    margin: 5px;
+    padding: 2px 5px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}

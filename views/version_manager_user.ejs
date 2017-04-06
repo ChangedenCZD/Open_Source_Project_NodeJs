@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel='stylesheet' href='/stylesheets/version_manager_user.css'/>
+</head>
+<body>
+<div id="wrap" class="wrap flex-c fs-small">
+    <a class="float-l fs-nano" href="../version_manager"><< 返回应用列表</a>
+    <span class="title fs-title fw-bolder"><%= title %></span>
+    <div class="info-area fs-small" v-if="userInfo&&userInfo.user_name">
+        <div class="line flex-r f-ai-c">
+            <div class="flex-r">
+                <span class="title">账号</span>
+                <span class="flex1">{{userInfo.user_account}}</span>
+            </div>
+            <i class="iconfont mgl-10 mgr-10" @click="logout">&#xe69a;</i>
+        </div>
+        <div class="line flex-r f-ai-c">
+            <div class="flex-r">
+                <span class="title">用户名</span>
+                <span class="flex1">{{userInfo.user_name}}</span>
+            </div>
+            <i class="iconfont mgl-10 mgr-10" @click="updateUserName">&#xe69e;</i>
+        </div>
+        <div class="line flex-r f-ai-c">
+            <div class="flex-r">
+                <span class="title">所属企业</span>
+                <span class="flex1">{{userInfo.company?userInfo.company:'尚未填写'}}</span>
+            </div>
+            <i class="iconfont mgl-10 mgr-10" @click="updateUserCompany">&#xe69e;</i>
+        </div>
+        <div class="line flex-r f-ai-c">
+            <span class="title">创建于</span>
+            <span class="flex1">{{new Date(userInfo.create_at).Format('yyyy-MM-dd HH:mm:ss')}}</span>
+        </div>
+        <div class="line flex-r f-ai-c">
+            <span class="title">登录密码</span>
+            <span></span>
+            <i class="iconfont mgl-10 mgr-10" @click="updateUserPassword">&#xe69e;</i>
+        </div>
+    </div>
+
+    <div class="info-update-area w100 h100" v-if="isShowInfoUpdate">
+        <div class="update-area flex-c bg-white b-r-5 pd-10">
+            <h3 class="fw-bolder mgb-10">修改{{updateMode==0?'用户名':updateMode==1?'所属企业':'登录密码'}}</h3>
+            <div class="flex-c" v-if="updateMode!=2">
+                <input class="input" v-model="updateContent" placeholder="请输入内容">
+                <input class="input" type="password" v-model="originalPwd" placeholder="请输入登录密码">
+            </div>
+            <div class="flex-c" v-else>
+                <input class="input" type="password" v-model="originalPwd" placeholder="请输入原密码">
+                <input class="input" type="password" v-model="newPwd" placeholder="请输入新密码">
+                <input class="input" type="password" v-model="confirmPwd" placeholder="请再次输入新密码">
+            </div>
+            <div class="flex-r pdt-10">
+                <i class="iconfont flex1" @click="hideInfoUpdate">&#xe69a;</i>
+                <i class="iconfont flex1" @click="updateInfo">&#xe6ad;</i>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/javascripts/libs/require.js"></script>
+<script src="/javascripts/version_manager_user.js"></script>
+<script src="/javascripts/libs/footer.js"></script>
+</html>

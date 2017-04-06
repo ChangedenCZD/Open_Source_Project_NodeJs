@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/index.css'/>
+    <style>
+        .qrcode{
+            width: 40%;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap flex-c fs-small">
+    <span class="title fs-title fw-bolder"><%= title %></span>
+    <span class="fs-normal"><%= line1 %></span>
+    <div>
+        <img class="qrcode" src="/images/donate_qrcode_alipay.jpg"/>
+        <img class="qrcode" src="/images/donate_qrcode_wxpay.png"/>
+    </div>
+</div>
+</body>
+<script src="/javascripts/libs/footer.js"></script>
+</html>

@@ -1,0 +1,16 @@
+@import "style.css";
+@import "libs/listUI.css";
+@import "index.css";
+
+#wrap span{
+    padding: 0;
+}
+#wrap .title{
+    padding: 10px;
+}
+.item{
+    padding: 5px;
+}
+.name{
+    text-align: left;
+}

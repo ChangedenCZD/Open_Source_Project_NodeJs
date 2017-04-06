@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+    <link rel='stylesheet' href='/stylesheets/version_manager.css'/>
+</head>
+<body>
+<div class="area-gray wrap flex-c fs-small">
+    <span class="title fs-title fw-bolder"><%= title %></span>
+    <div id="wrap">
+        <div class="app-list-area bg-white" :class="appListClass" v-if="userId">
+            <div class="app-list" v-if="appList.length&&!isShowCreate">
+                <h3 class="mgb-10 fw-bold">
+                    <i class="iconfont mgr-10 mgl-10 fw-normal float-l" @click="toUserInfo">&#xe6b8;</i>
+                    应用列表
+                    <i class="iconfont float-r fw-normal mgr-10 mgl-10" @click="showCreateApp">&#xe6b9;</i>
+                </h3>
+                <div id="app-list" class="list">
+                    <ol>
+                        <li class="flex-r t-black" :class="{odd:idx%2==0}" v-for="(item,idx) in appList"
+                            :key="item.id" @click="appItemClick" :data-id="item.id">
+                            <span class="fs-nano index" :data-id="item.id">{{idx+1}}</span>
+                            <span class="fs-middle flex1 mark" :data-id="item.id">{{item.name}}</span>
+                            <span class="fs-nano small" :data-id="item.id">更新于 {{new Date(item.updateAt).Format('yyyy-MM-dd HH:mm:ss')}}</span>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <div class="app-reg-area flex-c" v-else>
+                <h3 class="mgb-10 fw-bold">创建应用</h3>
+                <input class="fs-min" type="text" v-model="appName" placeholder="请输入应用名字"/>
+                <input class="fs-min" type="text" v-model="appPackageName" placeholder="请输入应用包名"/>
+                <textarea class="flex1 pd-10 b-r-5 fs-min mgt-10" v-model="appDescr" rows="5"
+                          maxlength="200" placeholder="请输入应用简介（选填）"></textarea>
+                <p class="flex-r pdt-10">
+                    <i class="iconfont flex1" @click="cancelCreateApp">&#xe69a;</i>
+                    <i class="iconfont flex1" @click="createApp">&#xe6ad;</i>
+                </p>
+            </div>
+        </div>
+        <div class="area-black account-input-area bg-white b-r-5" v-if="!userId">
+            <h3 class="mgb-10 fw-bold">{{isRegMode?'注册':'登录'}}</h3>
+            <p class="flex-r fs-min" v-if="isRegMode"><input class="flex1" type="text" v-model="userName"
+                                                             placeholder="请输入用户名"/></p>
+            <p class="flex-r fs-min"><input class="flex1" type="text" v-model="account" placeholder="请输入账号"/></p>
+            <p class="flex-r fs-min"><input class="flex1" type="password" v-model="password" placeholder="请输入登录密码"/></p>
+            <p v-if="errorHint"><span class="fs-nano t-red">{{errorHint}}</span></p>
+            <p class="flex-r" v-if="isRegMode">
+                <button class="flex1 t-white" type="red" @click="reg">注册</button>
+            </p>
+            <p class="flex-r">
+                <button class="flex1 t-white" type="black" @click="login" v-if="!isRegMode">登录</button>
+            </p>
+            <p class="mode-change-area"><a class="fs-nano" href="javascript:;" @click="modeChange">{{isRegMode?'去登录':'去注册'}}>></a>
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/javascripts/libs/require.js"></script>
+<script src="/javascripts/version_manager.js"></script>
+<script src="/javascripts/libs/footer.js"></script>
+</html>
